@@ -11,11 +11,11 @@ int main()
 	cout<<"Enter a number: ";
 	cin>>num;
 	cout<<num;
-	int result = (multiply_numbers(num))
+	int result = multiply_numbers(num);
 	cout<<"Result is:  "<<result;
 	int num1 = 4;
-	multiply_numbers(num1)
-	cout<<"Result is:  "<<result;
+	result = multiply_numbers(num1);
+	cout<<"\nResult is:  "<<result;
 
 	return 0;
 }
