@@ -19,6 +19,6 @@ TEST_CASE("Test Get Sales Tax")
 }
 TEST_CASE("Test Get Tip Amount")
 {
-	REQUIRE(get_tip_amount(0.20, 0.15) == 3);
-	REQUIRE(get_tip_amount(0.20, 0.20) == 4);
+	REQUIRE(get_tip_amount(20, 0.15) == 3);
+	REQUIRE(get_tip_amount(20, 0.20) == 4);
 }

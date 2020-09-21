@@ -17,7 +17,7 @@ int main()
 	double total;
 	cout<<"Enter meal amount: ";
 	cin>>meal_amount;
-	get_sales_tax_amount(meal_amount);
+	tax_amount = get_sales_tax_amount(meal_amount);
 	cout<<"Enter tip: ";
 	cin>>tip_rate;
 	tip_amount = get_tip_amount(meal_amount,  tip_rate);
