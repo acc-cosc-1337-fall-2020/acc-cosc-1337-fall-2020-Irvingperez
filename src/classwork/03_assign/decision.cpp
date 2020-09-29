@@ -55,8 +55,16 @@ string get_letter_grade_using_switch(int grade)
       case 6:
       grade_switch = "D";
       break;
-      default:
+      case 5:
+      case 4:
+      case 3:
+      case 2:
+      case 1:
+      case 0:
       grade_switch = "F";
+      break;
+      default:
+      grade_switch = "Invalid data";
       break;
 
       return grade_switch;
