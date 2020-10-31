@@ -9,23 +9,41 @@ using std::cout;
 
 int main() 
 {
-	int mark;
-	std::string player;
 	TicTacToe game;
-	cout << "Enter 'X' or 'O': )\t";
-	cin >> player;
-	game.start_game(player);
+	string player1;
+	int pos;
+	string win;
+	bool repeat = false;
+	string cont;
 
-	while (game.game_over() == false)
-	{
-		cout << "Choose your position (1-9): ";
-		cin >> mark;
-		game.mark_board(mark);
-		game.display_board();
-	} 
+	do {
+		do {
+			cout << "Enter X or O: ";
+			cin >> player1;
+		} while (player1 != "X" && player1 != "O" && player1 != "x" && player1 != "o");
 
-	cout << "Game over!";
+		game.start_game(player1);
 
+		do {
+			do {
+				cout << "\nEnter position from 1 to 9: ";
+				cin >> pos;
+			} while (pos < 0 || pos > 10);
+			game.mark_board(pos);
+			game.display_board();
+		} while (!game.game_over());
+		cout << "Game over\n";
+		win = game.get_winner();
+		if (win == "C")
+			cout << "Tie!";
+		else
+			cout << game.get_winner() << " You win!\n";
 
-	return 0;
-}
+		cout << "Comtinue ? press Y if not press any other: ";
+		cin >> cont;
+		if (cont == "Y" || cont == "y")
+			repeat = true;
+		else
+			repeat = false;
+	} while (repeat);
+	return 0;}
