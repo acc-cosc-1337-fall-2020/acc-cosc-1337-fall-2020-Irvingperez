@@ -1,49 +1,40 @@
-
-#include<iostream>
-#include<string>
-#include"tic_tac_toe.h"
-
-using std::cin;
-using std::cout;
-
+#include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 
 int main() 
 {
-	TicTacToe game;
-	string player1;
-	int pos;
-	string win;
-	bool repeat = false;
-	string cont;
+    TicTacToe game;
+    TicTacToeManager list;
+    string first_player;
+    char a, b;
+    bool status;
 
-	do {
-		do {
-			cout << "Enter X or O: ";
-			cin >> player1;
-		} while (player1 != "X" && player1 != "O" && player1 != "x" && player1 != "o");
+    do
+    {
+        cout << "Choose your player X or O:";
+        cin >>a;
+        first_player = toupper(a);
 
-		game.start_game(player1);
+        game.start_game(first_player);
+        do
+        {
+            cout << game;
+            cin >> game;
+            status = game.game_over();
 
-		do {
-			do {
-				cout << "\nEnter position from 1 to 9: ";
-				cin >> pos;
-			} while (pos < 0 || pos > 10);
-			game.mark_board(pos);
-			game.display_board();
-		} while (!game.game_over());
-		cout << "Game over\n";
-		win = game.get_winner();
-		if (win == "C")
-			cout << "Tie!";
-		else
-			cout << game.get_winner() << " You win!\n";
+        } while(!status);
 
-		cout << "Comtinue ? press Y if not press any other: ";
-		cin >> cont;
-		if (cont == "Y" || cont == "y")
-			repeat = true;
-		else
-			repeat = false;
-	} while (repeat);
-	return 0;}
+        cout << game;
+        list.save_game(game);
+
+        cout << endl
+             << "Press Y to continue or other to quit";
+        cin >> b;
+        b = toupper(b);
+
+    } while(b == 'Y');
+
+    cout << list;
+
+    return 0;
+}
