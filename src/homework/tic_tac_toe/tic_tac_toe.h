@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include<memory>
 
 using std::string, std::vector, std::cout, std:: cin, std::endl, std::ostream, std::istream;
 
@@ -10,6 +11,8 @@ using std::string, std::vector, std::cout, std:: cin, std::endl, std::ostream, s
 class TicTacToe
 {
 public:
+    TicTacToe(){};
+    TicTacToe(int size): pegs(size*size, " "){};
     bool game_over();
     string get_player() const {return player;}
     string get_winner() const {return winner;}
@@ -20,15 +23,19 @@ public:
 
 private:
     string player;
-    vector<string> pegs{9," "};
     string winner;
+
     bool check_board_full();
-    bool check_column_win();
-    bool check_diagonal_win();
-    bool check_row_win();
     void clear_board();
     void set_next_player();
     void set_winner();
+
+    protected: 
+    vector<string> pegs;
+    virtual bool check_column_win();
+    virtual bool check_row_win();
+    virtual bool check_diagonal_win();
+
 
 };
 #endif

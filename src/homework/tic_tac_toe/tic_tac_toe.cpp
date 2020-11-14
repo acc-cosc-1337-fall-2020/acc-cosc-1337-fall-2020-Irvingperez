@@ -32,7 +32,7 @@ void TicTacToe::mark_board(int position)
 
 bool TicTacToe::check_column_win()
 {
-    int a = 0, b = 0;
+    /*int a = 0, b = 0;
     for(int i=0;i<1;i++)
     {
         if(pegs[0] == "X")
@@ -109,12 +109,12 @@ bool TicTacToe::check_column_win()
             set_winner();
             return true;
         }
-    }
+    }*/
     return false;
 }
 bool TicTacToe::check_row_win()
 {
-    int a = 0, b = 0;
+    /*int a = 0, b = 0;
     for(int i=0;i<=2;++i)
     {
         if (pegs[i] == "X") {
@@ -155,12 +155,12 @@ bool TicTacToe::check_row_win()
         }
         if(a==3 || b==3)
             return true;
-    }
+    }*/
     return false;
 }
 bool TicTacToe::check_diagonal_win()
 {
-    int a = 0, b = 0;
+    /*int a = 0, b = 0;
     for(int i=0;i<1;++i)
     {
         if (pegs[0] == "X")
@@ -218,7 +218,7 @@ bool TicTacToe::check_diagonal_win()
             b++;
         }
         if(a == 3 || b == 3) {return true;}
-    }
+    }*/
     return false;
 }
 void TicTacToe::set_winner()
@@ -278,21 +278,58 @@ void TicTacToe::clear_board()
 
 ostream& operator << (ostream& out, const TicTacToe& game)
 {
-    out << endl
-        << "| " << game.pegs[0] << " | " << game.pegs[1] << " | " << game.pegs[2] << " |" <<endl
-        << "| " << game.pegs[3] << " | " << game.pegs[4] << " | " << game.pegs[5] << " |" <<endl
-        << "| " << game.pegs[6] << " | " << game.pegs[7] << " | " << game.pegs[8] << " |" <<endl
-        << endl;
-
+     if(game.pegs.size() == 9)
+    {
+        for(int a = 0; a < game.pegs.size(); a++)
+        {
+            out << game.pegs[a] << "| ";
+            if(a == 2 || a == 5 || a == 8)
+            {
+            out << "\n";
+            }
+        }
+    }
+    else if(game.pegs.size() == 16)
+    {
+        for(int a = 0; a < game.pegs.size(); a++)
+        {
+            out << game.pegs[a] << "| ";
+            if(a == 3 || a == 7 || a == 11 || a == 15)
+            {
+            out << "\n";
+            }
+        }
+    }
     return out;
 }
 
 istream& operator >> (istream& in, TicTacToe& game)
 {
-    int position=0;
-    cout << "Enter position 1 - 9 : ";
-    in>>position;
-    game.mark_board(position);
+    if(game.pegs.size() == 9)
+    {
+        int position;
+        cout << "\nPlease enter the position (1-9) on the board you wish to mark: ";
+	    in >> position;
+		while(position < 1 || position > 9)
+    	{
+        	cout << "Please enter a position between 1 and 9: ";
+			in >> position;
+    	}
+		game.mark_board(position);
+    }
 
+    else if(game.pegs.size() == 16)
+    {
+        int position;
+        cout << "\nPlease enter the position (1-16) on the board you wish to mark: ";
+	    in >> position;
+		while(position < 1 || position > 16)
+    	{
+        	cout << "Please enter a position between 1 and 16: ";
+			in >> position;
+    	}
+		game.mark_board(position); 
+    }
+    
     return in;
 }
