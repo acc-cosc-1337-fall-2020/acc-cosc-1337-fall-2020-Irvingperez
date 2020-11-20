@@ -6,12 +6,14 @@
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
 #include <memory>
+#include "tic_tac_toe_data.h"
 
 
 
 int main() 
 {
-	
+	TicTacToeData data;
+	TicTacToeManager m(data);
 	string again = "Y";
 	TicTacToeManager list;	
 	std::unique_ptr<TicTacToe> game;

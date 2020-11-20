@@ -249,23 +249,16 @@ void TicTacToe::set_next_player()
 }
 
 bool TicTacToe::check_board_full()
-{   int count = 0;
-
-    for(int i=0; i <= 8;i++)
+{
+    for(auto& p : pegs)
     {
-        if(!(pegs[i] == " "))
+        if(p == " ")
         {
-            count += 1;
+            return false;
         }
     }
-     if(count == 9)
-     {
-         return true;
-     }
-     else
-     {
-         return false;
-     }
+
+    return true;
 }
 
 void TicTacToe::clear_board()
@@ -308,11 +301,11 @@ istream& operator >> (istream& in, TicTacToe& game)
     if(game.pegs.size() == 9)
     {
         int position;
-        cout << "\nPlease enter the position (1-9) on the board you wish to mark: ";
+        cout << "\nwhats your next move between 1-9 ?: ";
 	    in >> position;
 		while(position < 1 || position > 9)
     	{
-        	cout << "Please enter a position between 1 and 9: ";
+        	cout << "whats your next move between 1-9 ?: ";
 			in >> position;
     	}
 		game.mark_board(position);
@@ -321,11 +314,11 @@ istream& operator >> (istream& in, TicTacToe& game)
     else if(game.pegs.size() == 16)
     {
         int position;
-        cout << "\nPlease enter the position (1-16) on the board you wish to mark: ";
+        cout << "\nwhats your next move between 1-16 ?: ";
 	    in >> position;
 		while(position < 1 || position > 16)
     	{
-        	cout << "Please enter a position between 1 and 16: ";
+        	cout << "whats your next move between 1-9 ?: ";
 			in >> position;
     	}
 		game.mark_board(position); 
